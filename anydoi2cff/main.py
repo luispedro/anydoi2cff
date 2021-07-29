@@ -24,12 +24,16 @@ def generate_cff(data):
     [title] = data['title']
     doi = data['DOI']
     authors = []
-    for aut in data['author']:
+    for aut in data.get('author', []):
         authors.append({
                   'family-names': aut['family'],
                   'given-names': aut['given'],
                   'orcid': aut.get('ORCID'),
                   })
+    if not authors:
+        import sys
+        sys.stderr.write("Author information is missing.\n")
+        sys.stderr.write("Proceeding... but check results manually\n")
     [date_parts] = data['published-print']['date-parts']
     if len(date_parts) == 3:
         year, month, day = date_parts
