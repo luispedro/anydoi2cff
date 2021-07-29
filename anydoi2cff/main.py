@@ -45,6 +45,7 @@ def generate_cff(data):
         'authors': authors,
         'doi': doi,
         'date-released': f'{year}-{month}-{day}',
+        'version': '0.0.0',
         }
 
 
