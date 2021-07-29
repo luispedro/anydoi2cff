@@ -41,8 +41,8 @@ def generate_cff(data):
     return {
         'cff-version': '1.1.0',
         'message': "If you use this software, please cite it as below.",
-        'authors': authors,
         'title': title,
+        'authors': authors,
         'doi': doi,
         'date-released': f'{year}-{month}-{day}',
         }
@@ -57,7 +57,7 @@ def main(argv):
     _,doi = argv
     meta = get_doi_meta(doi)
     cff = generate_cff(meta)
-    print(yaml.dump(cff))
+    print(yaml.dump(cff, sort_keys=False))
 
 if __name__ == '__main__':
     import sys
