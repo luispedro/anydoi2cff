@@ -34,7 +34,16 @@ def generate_cff(data):
         import sys
         sys.stderr.write("Author information is missing.\n")
         sys.stderr.write("Proceeding... but check results manually\n")
-    [date_parts] = data['published-print']['date-parts']
+    for pubkey in [
+                'published-print',
+                'published-online',
+                ]:
+        if pubkey in data:
+            [date_parts] = data[pubkey]['date-parts']
+            break
+    else:
+        raise IOError("Date information is missing.\n")
+
     if len(date_parts) == 3:
         year, month, day = date_parts
     elif len(date_parts) == 2:

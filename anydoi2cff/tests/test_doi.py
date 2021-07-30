@@ -1,3 +1,5 @@
+from anydoi2cff.main import norm_doi
+
 def test_simple_doi():
     doi = 'http://doi.org/10.5334/jors.161'
 
